@@ -1,0 +1,28 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRoutes = void 0;
+const express_1 = __importDefault(require("express"));
+const user_controller_1 = require("./user.controller");
+const user_validation_1 = require("./user.validation");
+const validateRequest_1 = __importDefault(require("../../middlewares/validateRequest"));
+const auth_1 = __importDefault(require("../../middlewares/auth"));
+const user_1 = require("../../enums/user");
+const router = express_1.default.Router();
+router.post("/register", (0, validateRequest_1.default)(user_validation_1.userValidation.createUser), user_controller_1.userController.createUser);
+router.post("/create-admin", (0, validateRequest_1.default)(user_validation_1.userValidation.createUser), user_controller_1.userController.createAdmin);
+router.post('/login', user_controller_1.userController.loginUser);
+router.patch('/:id/activate', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), user_controller_1.userController.activateOrDeactivateUser);
+router.put('/:id', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), user_controller_1.userController.updateUser);
+router.post('/change-password', user_controller_1.userController.changePassword);
+router.get('/my-profile', (0, auth_1.default)(), user_controller_1.userController.getMyProfile);
+router.put('/my-profile', (0, auth_1.default)(), (0, validateRequest_1.default)(user_validation_1.userValidation.updateProfile), user_controller_1.userController.updateMyProfile);
+router.get('/my-lostItems', (0, auth_1.default)(), user_controller_1.userController.getMyLostItems);
+router.get('/my-foundItems', (0, auth_1.default)(), user_controller_1.userController.getMyFoundItems);
+router.get('/my-claimItems', (0, auth_1.default)(), user_controller_1.userController.getMyClaimItems);
+router.get('/all-users', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), user_controller_1.userController.getAllUsers);
+router.get('/website-activity', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), user_controller_1.userController.websiteActivity);
+router.post('/refresh-token', user_controller_1.userController.refreshToken);
+exports.userRoutes = router;
