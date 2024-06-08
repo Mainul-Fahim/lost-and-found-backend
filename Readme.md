@@ -22,6 +22,6 @@
 ## Live Link
 - Live Link : https://lost-and-found-system-rose.vercel.app/
 
-- Github Link: https://github.com/Porgramming-Hero-web-course/l2-b2-fullstack-track-assignment-8-Mainul-Fahim
+- Github Link: https://github.com/Mainul-Fahim/lost-and-found-backend
 
-- Video Link: https://drive.google.com/file/d/1ZA6Q2_cMDaDYVGc1tC1LECAZUZNqd_sI/view?usp=drive_link
+

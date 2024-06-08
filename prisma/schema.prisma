@@ -56,7 +56,7 @@ model LostItemCategory {
 model LostItem {
   id           String      @id @default(uuid())
   userId       String
-  categoryId   String      @unique
+  categoryId   String     
   LostItemName String
   description  String
   location     String
@@ -83,7 +83,7 @@ model FoundItemCategory {
 model FoundItem {
   id            String   @id @default(uuid())
   userId        String
-  categoryId    String   @unique
+  categoryId    String  
   foundItemName String
   description   String
   location      String
